@@ -6,6 +6,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.app.database import BaseModel
 from src.app.schemas.tasks import TaskStatus
 
+
 class Task(BaseModel):
     __tablename__ = "tasks"
     

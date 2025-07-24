@@ -5,10 +5,8 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 from src.app.database import BaseModel
 
-class Base(DeclarativeBase):
-    pass
 
-class User(Base):
+class User(BaseModel):
     __tablename__ = "users"
     
     id: Mapped[int] = mapped_column(primary_key=True)

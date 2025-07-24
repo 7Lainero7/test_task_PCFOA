@@ -23,5 +23,10 @@ elif Settings.DB_ENGINE == "sqlite":
 metadata_obj = MetaData(schema="PCF")
 
 
+async def get_async_session() -> AsyncSession:
+    async with SessionLocal() as session:
+        yield session
+
+
 class BaseModel(DeclarativeBase):
     metadata = metadata_obj
