@@ -1,0 +1,51 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+.env.*
+
+# Pytest cache
+.pytest_cache/
+
+# VS Code settings
+.vscode/
+
+# SQLite database (если используешь)
+*.db
+*.sqlite3
+
+# Alembic
+alembic/versions/*.pyc
+
+# Logs
+*.log
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+
+# Mypy
+.mypy_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Swagger UI static files (если генерируешь вручную)
+static/swagger/
+
+# Docker
+*.pid
+*.tar
+*.gz
+*.bak
+
+# OS-specific
+.DS_Store
+Thumbs.db
