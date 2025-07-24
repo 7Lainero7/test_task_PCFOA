@@ -3,6 +3,7 @@ from datetime import datetime
 from pydantic import BaseModel
 from typing import Optional
 
+
 class TaskStatus(str, Enum):
     pending = "pending"
     in_progress = "in_progress"

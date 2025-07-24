@@ -4,7 +4,7 @@ from sqlalchemy import ForeignKey, String, Text, Enum, DateTime
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from src.app.database import BaseModel
-from src.app.schemas.tasks import TaskStatus
+from src.app.schemas.task import TaskStatus
 
 
 class Task(BaseModel):

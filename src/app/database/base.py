@@ -6,10 +6,12 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from src.app.config import Settings
 
+
 if Settings.DB_ENGINE == "postgresql":
     DATABASE_URL = Settings.DATABASE_URL
     engine = create_async_engine(DATABASE_URL, echo=True)
     SessionLocal = sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
+
 
 elif Settings.DB_ENGINE == "sqlite":
     from sqlalchemy import create_engine
