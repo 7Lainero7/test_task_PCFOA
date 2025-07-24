@@ -17,4 +17,4 @@ async def startup():
 
 @app.get("/")
 async def root():
-    return {"message": "Task Manager API with Auth"}
+    return {"message": "Pim pim pam pam"}
