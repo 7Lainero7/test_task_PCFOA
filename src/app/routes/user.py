@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.database import get_async_session
+
+from src.app.database.base import get_async_session
 from src.app.dao.user import UserDAO
 from src.app.schemas.user import UserCreate, UserInDB
-from app.core.security import (
+from src.app.core.security import (
     authenticate_user,
     create_access_token,
     get_current_user,

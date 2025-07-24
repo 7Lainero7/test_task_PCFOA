@@ -4,10 +4,11 @@ from jose import JWTError, jwt
 from passlib.context import CryptContext
 from fastapi.security import OAuth2PasswordBearer
 from fastapi import Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
+
 
 from src.app.database.base import get_async_session
 from src.app.dao.user import UserDAO
-from src.app.schemas.user import UserInDB
 from src.app.config import Settings
 
 

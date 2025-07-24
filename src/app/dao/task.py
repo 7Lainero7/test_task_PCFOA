@@ -1,7 +1,6 @@
 from sqlalchemy import and_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.app.dao.base import BaseDAO
-from src.app.database.base import async_session_maker
 from src.app.models.task import Task
 from src.app.schemas.task import TaskStatus
 

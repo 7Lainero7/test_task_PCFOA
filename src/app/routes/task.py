@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.database import get_async_session
+
+from src.app.database.base import get_async_session
 from src.app.dao.task import TaskDAO
 from src.app.schemas.task import Task, TaskCreate, TaskUpdate
 from src.app.core.security import get_current_user
