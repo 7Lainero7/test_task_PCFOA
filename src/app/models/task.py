@@ -1,9 +1,9 @@
 from typing import Optional
 from datetime import datetime
-from sqlalchemy import ForeignKey, String, Text, Enum, DateTime
+from sqlalchemy import ForeignKey, String, Text, Enum, DateTime, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.app.database import BaseModel
+from src.app.database.base import BaseModel
 from src.app.schemas.task import TaskStatus
 
 

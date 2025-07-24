@@ -1,9 +1,9 @@
 from typing import List
 from datetime import datetime
-from sqlalchemy import String, DateTime
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import String, DateTime, func
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from src.app.database import BaseModel
+from src.app.database.base import BaseModel
 
 
 class User(BaseModel):

@@ -1,5 +1,5 @@
-from app.models.task import Task
-from app.models.user import User
+from src.app.models.task import Task
+from src.app.models.user import User
 
 """${message}
 
