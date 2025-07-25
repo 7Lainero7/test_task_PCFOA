@@ -1,4 +1,4 @@
-from sqlalchemy import select, update
+from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.app.dao.base import BaseDAO
@@ -23,19 +23,16 @@ class UserDAO(BaseDAO):
     @classmethod
     async def create_user(cls, session: AsyncSession, user_data: dict):
         from src.app.core.security import get_password_hash
+
         hashed_password = get_password_hash(user_data["password"])
         user_data["hashed_password"] = hashed_password
         del user_data["password"]
         return await super().create(session, **user_data)
 
     @classmethod
-    async def update_user(
-        cls, 
-        session: AsyncSession, 
-        user_id: int, 
-        update_data: dict
-    ):
+    async def update_user(cls, session: AsyncSession, user_id: int, update_data: dict):
         from src.app.core.security import get_password_hash
+
         if "password" in update_data:
             update_data["hashed_password"] = get_password_hash(update_data["password"])
             del update_data["password"]

@@ -1,8 +1,10 @@
 from typing import Type, TypeVar
-from sqlalchemy import select, update, delete
+
+from sqlalchemy import delete, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
-ModelType = TypeVar('ModelType')
+ModelType = TypeVar("ModelType")
+
 
 class BaseDAO:
     model: Type[ModelType] = None

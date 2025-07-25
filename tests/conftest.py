@@ -1,16 +1,16 @@
-import sys
+from __future__ import annotations
+
 import os
-from httpx import AsyncClient, ASGITransport
+import sys
+
 import pytest_asyncio
-import pytest_asyncio
+from httpx import ASGITransport, AsyncClient
 from sqlalchemy import delete
-
-
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from src.app.main import app
 from src.app.database.base import get_async_session
+from src.app.main import app
 from src.app.models.task import Task
 from src.app.models.user import User
 
@@ -19,15 +19,11 @@ from src.app.models.user import User
 async def auth_headers():
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
-        await ac.post("/register", json={
-            "username": "nos",
-            "email": "nos@example.com",
-            "password": "qwer"
-        })
-        response = await ac.post("/token", data={
-            "username": "nos",
-            "password": "qwer"
-        })
+        await ac.post(
+            "/register",
+            json={"username": "nos", "email": "nos@example.com", "password": "qwer"},
+        )
+        response = await ac.post("/token", data={"username": "nos", "password": "qwer"})
         token = response.json()["access_token"]
         return {"Authorization": f"Bearer {token}"}
 
@@ -42,4 +38,3 @@ async def clear_db():
         await session.commit()
     finally:
         await session.close()
-

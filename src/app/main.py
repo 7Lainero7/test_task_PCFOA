@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 
-from src.app.routes import user, task
-from src.app.database.base import engine, BaseModel
+from src.app.database.base import BaseModel, engine
+from src.app.routes import task, user
 
 app = FastAPI(title="Test_task")
 

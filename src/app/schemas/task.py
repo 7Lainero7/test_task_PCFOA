@@ -1,7 +1,8 @@
-from enum import Enum
 from datetime import datetime
-from pydantic import BaseModel
+from enum import Enum
 from typing import Optional
+
+from pydantic import BaseModel
 
 
 class TaskStatus(str, Enum):
@@ -19,10 +20,12 @@ class TaskBase(BaseModel):
 class TaskCreate(TaskBase):
     pass
 
+
 class TaskUpdate(BaseModel):
     title: Optional[str] = None
     description: Optional[str] = None
     status: Optional[TaskStatus] = None
+
 
 class Task(TaskBase):
     id: int

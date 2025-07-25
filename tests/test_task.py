@@ -1,5 +1,6 @@
 import pytest
-from httpx import AsyncClient, ASGITransport
+from httpx import ASGITransport, AsyncClient
+
 from src.app.main import app
 
 
@@ -8,10 +9,7 @@ async def test_task_crud(auth_headers):
     transport = ASGITransport(app=app)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         # Создание задачи
-        task_data = {
-            "title": "Test Task",
-            "description": "This is a test task"
-        }
+        task_data = {"title": "Test Task", "description": "This is a test task"}
         response = await ac.post("/tasks/", json=task_data, headers=auth_headers)
         assert response.status_code == 200
         task = response.json()
@@ -24,11 +22,10 @@ async def test_task_crud(auth_headers):
         assert response.json()["title"] == "Test Task"
 
         # Обновление задачи
-        update_data = {
-            "title": "Updated Task",
-            "description": "Updated description"
-        }
-        response = await ac.put(f"/tasks/{task_id}", json=update_data, headers=auth_headers)
+        update_data = {"title": "Updated Task", "description": "Updated description"}
+        response = await ac.put(
+            f"/tasks/{task_id}", json=update_data, headers=auth_headers
+        )
         assert response.status_code == 200
         assert response.json()["title"] == "Updated Task"
 
