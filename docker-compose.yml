@@ -17,7 +17,6 @@ services:
     build:
       context: .
       dockerfile: src/dockerfile
-
     depends_on:
       - db
     environment:
@@ -26,7 +25,7 @@ services:
       - "8000:8000"
     volumes:
       - .:/app
-    entrypoint: ["/bin/bash", "/app/entrypoint.sh"]
+    entrypoint: ["python", "/app/entrypoint.py"]
 
 volumes:
   postgres_data:
