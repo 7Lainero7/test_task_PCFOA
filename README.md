@@ -23,7 +23,7 @@
 
 ```bash
 git clone https://github.com/7Lainero7/test_task_PCFOA.git
-cd task-manager-api
+cd test_task_PCFOA
 ```
 
 ### 2. Запусти через Docker
