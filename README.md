@@ -26,13 +26,44 @@ git clone https://github.com/7Lainero7/test_task_PCFOA.git
 cd test_task_PCFOA
 ```
 
-### 2. Запусти через Docker
+### 2. Создайте .env
+
+ #### Для локального запуска:
+ ```
+    DB_ENGINE=postgresql
+    DB_HOST=localhost
+    DB_PORT=5432
+    DB_NAME=postgres
+    DB_USER=postgres
+    DB_PASSWORD=qwer
+    SECRET_KEY=SECRET_KEY
+    ALGORITHM=HS256
+    ACCESS_TOKEN_EXPIRE_MINUTES=30
+    DB_SCHEME=PCF
+ ```
+
+ #### Для Docker:
+ ```
+    DB_ENGINE=postgresql
+    DB_HOST=db
+    DB_PORT=5432
+    DB_NAME=tasks_db
+    DB_USER=postgres
+    DB_PASSWORD=postgres
+    SECRET_KEY=SECRET_KEY
+    ALGORITHM=HS256
+    ACCESS_TOKEN_EXPIRE_MINUTES=30
+    DB_SCHEME=PCF
+ ```
+
+
+### 3. Запусти через Docker
 
 ```bash
 docker-compose up --build
 ```
 
-### 3. Документация
+### 4. Документация
 
 - Swagger: [http://localhost:8000/docs](http://localhost:8000/docs)
 - ReDoc: [http://localhost:8000/redoc](http://localhost:8000/redoc)
