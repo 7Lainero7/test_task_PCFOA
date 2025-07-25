@@ -14,7 +14,10 @@ services:
       - "5432:5432"
 
   web:
-    build: /src/.
+    build:
+      context: .
+      dockerfile: src/dockerfile
+
     depends_on:
       - db
     environment:
