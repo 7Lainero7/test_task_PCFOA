@@ -1,5 +1,7 @@
 from src.app.models.task import Task
 from src.app.models.user import User
+from sqlalchemy import MetaData
+
 
 """${message}
 

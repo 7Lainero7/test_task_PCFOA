@@ -49,7 +49,7 @@ def run_migrations_online():
     )
 
     with connectable.connect() as connection:
-        print(f"🔧 Creating schema if not exists: {SCHEMA}")
+        print(f"Creating schema if not exists: {SCHEMA}")
         connection.execution_options(isolation_level="AUTOCOMMIT").execute(
             text(f'CREATE SCHEMA IF NOT EXISTS "{SCHEMA}"')
         )

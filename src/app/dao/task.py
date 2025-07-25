@@ -1,4 +1,4 @@
-from sqlalchemy import and_, select
+from sqlalchemy import and_, select, update, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from src.app.dao.base import BaseDAO
 from src.app.models.task import Task

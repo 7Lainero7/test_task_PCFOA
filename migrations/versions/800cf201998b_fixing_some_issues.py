@@ -1,11 +1,13 @@
 from src.app.models.task import Task
 from src.app.models.user import User
+from sqlalchemy import MetaData
 
-"""init
 
-Revision ID: ca753104d169
+"""fixing some issues
+
+Revision ID: 800cf201998b
 Revises: 
-Create Date: 2025-07-25 02:53:28.909757
+Create Date: 2025-07-25 10:20:47.165214
 
 """
 from typing import Sequence, Union
@@ -15,7 +17,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'ca753104d169'
+revision: str = '800cf201998b'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -27,19 +29,21 @@ def upgrade() -> None:
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=50), nullable=False),
+    sa.Column('email', sa.String(length=255), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     schema='PCF'
     )
     with op.batch_alter_table('users', schema='PCF') as batch_op:
+        batch_op.create_index(batch_op.f('ix_PCF_users_email'), ['email'], unique=True)
         batch_op.create_index(batch_op.f('ix_PCF_users_username'), ['username'], unique=True)
 
     op.create_table('tasks',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=100), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
-    sa.Column('status', sa.Enum('pending', 'in_progress', 'done', name='taskstatus'), nullable=False),
+    sa.Column('status', sa.String(length=20), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['PCF.users.id'], ),
@@ -61,6 +65,7 @@ def downgrade() -> None:
     op.drop_table('tasks', schema='PCF')
     with op.batch_alter_table('users', schema='PCF') as batch_op:
         batch_op.drop_index(batch_op.f('ix_PCF_users_username'))
+        batch_op.drop_index(batch_op.f('ix_PCF_users_email'))
 
     op.drop_table('users', schema='PCF')
     # ### end Alembic commands ###

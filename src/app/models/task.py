@@ -6,17 +6,14 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.app.database.base import BaseModel
 from src.app.schemas.task import TaskStatus
 
-
 class Task(BaseModel):
     __tablename__ = "tasks"
     
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(100), index=True)
     description: Mapped[Optional[str]] = mapped_column(Text)
-    status: Mapped[TaskStatus] = mapped_column(
-        Enum(TaskStatus), 
-        default=TaskStatus.pending
-    )
+    status: Mapped[str] = mapped_column(String(20), nullable=False, default=TaskStatus.pending.value)
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), 
         server_default=func.now()
